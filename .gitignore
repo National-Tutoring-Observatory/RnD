@@ -1,0 +1,38 @@
+# AWS
+.aws-sam
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node
+node_modules/
+npm-debug.log*
+coverage/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+
+# dotenv environment variables file
+.env
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Temporary folders
+tmp/
+temp/
+
+### OSX ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
