@@ -6,9 +6,9 @@ This project contains source code and supporting files for a serverless applicat
 
 ### Prerequisites
 
-- Install node.js
+- Install Node.js 22.x
 
-- Install Python
+- Install Python 3.12
 
 ### Setup AWS SAM CLI
 
