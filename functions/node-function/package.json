@@ -1,9 +1,10 @@
 {
-  "name": "rnd",
+  "name": "node-function",
   "version": "1.0.0",
-  "description": "RnD project for NTO",
+  "description": "A simple node function template",
   "main": "app.ts",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "unit": "jest",
     "lint": "eslint '*.ts' --quiet --fix",
