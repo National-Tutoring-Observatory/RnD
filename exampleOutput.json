@@ -1,0 +1,115 @@
+// Output from pipeline before AI
+{
+  "id": "1",
+  "transcript": [
+    {
+      "role": "TEACHER",
+      "content": "Hey, how was that problem?",
+      "annotations": []
+    },
+    {
+      "role": "STUDENT_1",
+      "content": "Was great, I think I understand it now. Thank you!",
+      "annotations": []
+    },
+    {
+      "role": "TEACHER",
+      "content": "Well, I only helped guide you, but you answered it. Great work!",
+      "annotations": []
+    }
+  ]
+}
+// Output from pipeline after AI
+{
+  "id": "1",
+  "transcript": [
+    {
+      "role": "TEACHER",
+      "content": "Hey, how was that problem?",
+      "annotations": []
+    },
+    {
+      "role": "STUDENT_1",
+      "content": "Was great, I think I understand it now. Thank you!",
+      "annotations": []
+    },
+    {
+      "role": "TEACHER",
+      "content": "Well, I only helped guide you, but you answered it. Great work!",
+      "annotations": [
+        {
+          "type": "TEACHER_MOVE",
+          "teacherMove": "GIVING_PRAISE",
+          "reasoning": "Teacher deflects their input and praising the student by saying 'Great work!'",
+          "score": 0.9,
+          "identifiedBy": "AI"
+        }
+      ] // AI has highlighted a teacher move and given a score.
+    }
+  ]
+}
+// Output from pipeline after Human
+{
+  "id": "1",
+  "transcript": [
+    {
+      "role": "TEACHER",
+      "content": "Hey, how was that problem?",
+      "annotations": []
+    },
+    {
+      "role": "STUDENT_1",
+      "content": "Was great, I think I understand it now. Thank you!",
+      "annotations": []
+    },
+    {
+      "role": "TEACHER",
+      "content": "Well, I only helped guide you, but you answered it. Great work!",
+      "annotations": [
+        {
+          "type": "TEACHER_MOVE",
+          "teacherMove": "GIVING_PRAISE",
+          "reasoning": "Praises the student by saying 'Great work!'",
+          "score": 0.7,
+          "identifiedBy": "HUMAN"
+        }
+      ] // Researcher has highlighted a teacher move and given a score.
+    }
+  ]
+}
+// Final out combined
+{
+  "id": "1",
+  "transcript": [
+    {
+      "role": "TEACHER",
+      "content": "Hey, how was that problem?",
+      "annotations": []
+    },
+    {
+      "role": "STUDENT_1",
+      "content": "Was great, I think I understand it now. Thank you!",
+      "annotations": []
+    },
+    {
+      "role": "TEACHER",
+      "content": "Well, I only helped guide you, but you answered it. Great work!",
+      "annotations": [
+        {
+          "type": "TEACHER_MOVE",
+          "teacherMove": "GIVING_PRAISE",
+          "reasoning": "Teacher deflects their input and praising the student by saying 'Great work!'",
+          "score": 0.9,
+          "identifiedBy": "AI"
+        },
+        {
+          "type": "TEACHER_MOVE",
+          "teacherMove": "GIVING_PRAISE",
+          "reasoning": "Praises the student by saying 'Great work!'",
+          "score": 0.7,
+          "identifiedBy": "HUMAN"
+        }
+      ]
+    }
+  ]
+}
