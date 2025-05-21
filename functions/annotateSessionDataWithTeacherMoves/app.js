@@ -3,12 +3,15 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../../.env' });
 import fse from 'fs-extra';
 import OpenAI from "openai";
-import schema from "./schema.json" with { type: "json" };
+import find from 'lodash/find.js';
+import annotationSchema from "./annotationSchema.json" with { type: "json" };
+import prompts from "./prompts.json" with {type: "json"};
+import get from 'lodash/get.js';
 
 export const lambdaHandler = async (event) => {
   try {
     const { body } = event;
-    const { inputFile, outputFolder } = body;
+    const { inputFile, outputFolder, promptId } = body;
 
     if (!await fs.existsSync(inputFile)) throw { message: 'This input file does not exist' };
 
@@ -19,25 +22,46 @@ export const lambdaHandler = async (event) => {
 
     const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
 
+    const prompt = find(prompts, { _id: promptId });
+
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
         {
-          role: "user",
-          content: "You are an expert at reading unstructured data and putting it into a structure format. You will be given different types of data and will be expected to put it into the given JSON structure.",
+          role: "system",
+          content: `You are an expert analyst of conversations between a teacher and student/s. You will be given a conversation where you will need to fill out the following JSON: 
+          Schema: ${JSON.stringify(annotationSchema)}
+
+          - The "score" is how well you think you have identified the certain moment in the conversation. 0 being the lowest with 1 being the highest.
+          - The "reasoning" is why you chose this moment to highlight.
+          - The "_id" is the _id found in the original "conversation" JSON. This needs to be tracked.
+          - Make sure you only highlight the moment described by the user in their "prompt".
+          - You are not limited to one annotation.
+          - Only return the annotations array.`,
         },
         {
           role: "user",
           content: `
-          Schema: ${JSON.stringify(schema)}
-    
-          Please look at the following and merge into the schema: ${data}`
+          # teacherMove: ${prompt.teacherMove}
+          # prompt: ${prompt.prompt}
+          # conversation: ${data}
+          `
         },
       ],
       response_format: { type: "json_object" }
     });
 
-    fse.outputJSON(`${outputFolder}/${outputFileName}.json`, JSON.parse(chatCompletion.choices[0].message.content), (error) => {
+    const originalJSON = JSON.parse(data);
+
+    const annotations = JSON.parse(chatCompletion.choices[0].message.content).annotations;
+
+    for (const annotation of annotations) {
+      const currentUtterance = find(originalJSON.transcript, { _id: annotation._id });
+      currentUtterance.annotations = [...currentUtterance.annotations, annotation];
+    }
+
+
+    fse.outputJSON(`${outputFolder}/${outputFileName}.json`, originalJSON, (error) => {
       if (error) console.log(error);
     });
 
