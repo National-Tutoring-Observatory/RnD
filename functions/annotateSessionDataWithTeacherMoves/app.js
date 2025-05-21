@@ -51,23 +51,15 @@ export const lambdaHandler = async (event) => {
       response_format: { type: "json_object" }
     });
 
-    console.log(chatCompletion.choices[0].message.content);
-
     const originalJSON = JSON.parse(data);
-
-    console.log(originalJSON);
 
     const annotations = JSON.parse(chatCompletion.choices[0].message.content).annotations;
 
     for (const annotation of annotations) {
-      console.log(annotation);
       const currentUtterance = find(originalJSON.transcript, { _id: annotation._id });
       currentUtterance.annotations = [...currentUtterance.annotations, annotation];
     }
 
-    console.log(annotations);
-
-    console.log(originalJSON);
 
     fse.outputJSON(`${outputFolder}/${outputFileName}.json`, originalJSON, (error) => {
       if (error) console.log(error);
