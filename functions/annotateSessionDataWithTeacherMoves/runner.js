@@ -5,7 +5,7 @@ import path from 'path';
 
 async function runner() {
 
-  const jsonsInDir = fs.readdirSync('../../localData/input').filter(file => path.extname(file) === '.json');
+  const jsonsInDir = fs.readdirSync('../../localData/analysis').filter(file => path.extname(file) === '.json');
 
   const events = [];
 
@@ -13,15 +13,18 @@ async function runner() {
     console.log(file);
     events.push({
       body: {
-        "inputFile": `../../localData/input/${file}`,
-        "outputFolder": "../../localData/analysis"
+        "inputFile": `../../localData/analysis/${file}`,
+        "outputFolder": "../../localData/analysis",
+        "promptId": "0"
       }
     });
   });
 
-  for (const event of events) {
-    await lambdaHandler(event);
-  }
+  await lambdaHandler(events[0]);
+
+  // for (const event of events) {
+  //   await lambdaHandler(event);
+  // }
 }
 
 

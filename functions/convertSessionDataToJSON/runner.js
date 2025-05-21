@@ -10,7 +10,6 @@ async function runner() {
   const events = [];
 
   jsonsInDir.forEach(file => {
-    console.log(file);
     events.push({
       body: {
         "inputFile": `../../localData/input/${file}`,

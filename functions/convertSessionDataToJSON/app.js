@@ -15,7 +15,7 @@ export const lambdaHandler = async (event) => {
     const data = await fse.readFile(inputFile, { encoding: 'utf8' });
 
     const inputFileSplit = inputFile.split('/');
-    const outputFileName = inputFileSplit[inputFileSplit.length - 1].replace('.json', '');
+    const outputFileName = inputFileSplit[inputFileSplit.length - 1].replace('.json', '').replace('.vtt', '');
 
     const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
 

@@ -1,7 +1,8 @@
 {
   "body": {
-    "inputFile": "../../localData/input/01801e36-4f2a-1dc1-c3ca-4c23099bad17.json",
-    "outputFolder": "../../localData/analysis"
+    "inputFile": "../../localData/analysis/884473571_captions.json",
+    "outputFolder": "../../localData/analysis",
+    "promptId": "0"
   },
   "resource": "/{proxy+}",
   "path": "/path/to/resource",

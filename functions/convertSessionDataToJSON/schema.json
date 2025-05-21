@@ -1,6 +1,7 @@
 {
   "transcript": [
     {
+      "_id": "0",
       "role": "TEACHER",
       "content": "// Content of teacher utterance",
       "start_time": "// Start time of utterance - this can be estimated",
@@ -8,6 +9,7 @@
       "annotations": []
     },
     {
+      "_id": "1",
       "role": "STUDENT_1",
       "content": "// Content of student utterance",
       "start_time": "// Start time of utterance - this can be estimated",
@@ -15,6 +17,7 @@
       "annotations": []
     },
     {
+      "_id": "2",
       "role": "TEACHER",
       "content": "// Content of teacher utterance",
       "start_time": "// Start time of utterance - this can be estimated",
