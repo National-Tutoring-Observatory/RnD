@@ -8,8 +8,6 @@ export const lambdaHandler = async (event) => {
     const { body } = event;
     const { contentType, inputFile, outputFolder, outputFileKey, sessionLimit } = body;
 
-    console.log(inputFile);
-
     if (!await fs.existsSync(inputFile)) throw { message: 'This input file does not exist' };
 
     if (contentType === 'JSONL') {

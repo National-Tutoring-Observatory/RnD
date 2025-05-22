@@ -1,8 +1,7 @@
-import { OpenAI } from 'openai';
+import { LLMS } from './registerLLM.js';
+import find from 'lodash/find.js';
 
-export default async ({ models, llm }) => {
-  if (llm === 'OPENAI') {
-    const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
-    return openai;
-  }
-};
+
+export default (provider) => {
+  return find(LLMS, { provider });
+}
