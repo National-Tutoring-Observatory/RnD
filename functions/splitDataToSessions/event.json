@@ -1,8 +1,8 @@
 {
   "body": {
     "contentType": "JSONL",
-    "inputFile": "../../localData/raw/transcripts.jsonl",
-    "outputFolder": "../../localData/input",
+    "inputFile": "localData/raw/transcripts.jsonl",
+    "outputFolder": "localData/input",
     "outputFileKey": "id",
     "sessionLimit": 30
   },

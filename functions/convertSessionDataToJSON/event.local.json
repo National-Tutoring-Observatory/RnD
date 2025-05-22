@@ -1,7 +1,7 @@
 {
   "body": {
-    "inputFile": "../../localData/input/01801e36-4f2a-1dc1-c3ca-4c23099bad17.json",
-    "outputFolder": "../../localData/analysis"
+    "inputFile": "localData/input/884473571_captions.vtt",
+    "outputFolder": "localData/analysis"
   },
   "resource": "/{proxy+}",
   "path": "/path/to/resource",

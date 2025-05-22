@@ -1,6 +1,6 @@
 import fs from 'fs';
 import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
+dotenv.config({ path: '.env' });
 import fse from 'fs-extra';
 import OpenAI from "openai";
 import schema from "./schema.json" with { type: "json" };

@@ -1,12 +1,11 @@
 import fs from 'fs';
 import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
+dotenv.config({ path: '.env' });
 import fse from 'fs-extra';
 import OpenAI from "openai";
 import find from 'lodash/find.js';
 import annotationSchema from "./annotationSchema.json" with { type: "json" };
 import prompts from "./prompts.json" with {type: "json"};
-import get from 'lodash/get.js';
 
 export const lambdaHandler = async (event) => {
   try {

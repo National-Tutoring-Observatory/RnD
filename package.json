@@ -1,0 +1,19 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "annotateSessionDataWithTeacherMoves": "node functions/annotateSessionDataWithTeacherMoves/runLocal.js",
+    "convertSessionDataToJSON": "node functions/convertSessionDataToJSON/runLocal.js",
+    "splitDataToSessions": "node functions/splitDataToSessions/runLocal.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "fs-extra": "^11.3.0",
+    "lodash": "^4.17.21",
+    "openai": "^4.100.0"
+  },
+  "devDependencies": {}
+}

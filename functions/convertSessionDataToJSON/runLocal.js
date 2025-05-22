@@ -1,5 +1,5 @@
 import { lambdaHandler } from './app.js';
-import event from './event.json' with { type: "json" };
+import event from './event.local.json' with { type: "json" };
 
 async function runLocal() {
   try {
