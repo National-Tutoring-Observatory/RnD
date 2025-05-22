@@ -17,7 +17,7 @@ export const lambdaHandler = async (event) => {
     const inputFileSplit = inputFile.split('/');
     const outputFileName = inputFileSplit[inputFileSplit.length - 1].replace('.json', '').replace('.vtt', '');
 
-    const llm = new LLM({ provider: 'OPEN_AI' })
+    const llm = new LLM({ provider: 'OPEN_AI', quality: 'high' })
 
     llm.addSystemMessage("You are an expert at reading unstructured data and putting it into a structure format. You will be given different types of data and will be expected to put it into the given JSON structure.");
 
