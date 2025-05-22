@@ -23,7 +23,7 @@ export const lambdaHandler = async (event) => {
     const prompt = find(prompts, { _id: promptId });
     const originalJSON = JSON.parse(data);
 
-    const llm = new LLM({ provider: 'OPEN_AI' })
+    const llm = new LLM({ provider: 'OPEN_AI', quality: 'high' })
 
     llm.addSystemMessage(`You are an expert analyst of conversations between a teacher and student/s. You will be given a conversation where you will need to fill out the following JSON: 
           Schema: ${JSON.stringify(annotationSchema)}

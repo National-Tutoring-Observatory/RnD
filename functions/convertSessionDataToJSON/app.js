@@ -2,8 +2,8 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 import fse from 'fs-extra';
-import OpenAI from "openai";
 import schema from "./schema.json" with { type: "json" };
+import LLM from '../../shared/llm/llm.js';
 
 export const lambdaHandler = async (event) => {
   try {
@@ -17,27 +17,18 @@ export const lambdaHandler = async (event) => {
     const inputFileSplit = inputFile.split('/');
     const outputFileName = inputFileSplit[inputFileSplit.length - 1].replace('.json', '').replace('.vtt', '');
 
-    const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
+    const llm = new LLM({ provider: 'OPEN_AI', quality: 'high' })
 
-    const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [
-        {
-          role: "user",
-          content: "You are an expert at reading unstructured data and putting it into a structure format. You will be given different types of data and will be expected to put it into the given JSON structure.",
-        },
-        {
-          role: "user",
-          content: `
+    llm.addSystemMessage("You are an expert at reading unstructured data and putting it into a structure format. You will be given different types of data and will be expected to put it into the given JSON structure.");
+
+    llm.addUserMessage(`
           Schema: ${JSON.stringify(schema)}
     
-          Please look at the following and merge into the schema: ${data}`
-        },
-      ],
-      response_format: { type: "json_object" }
-    });
+          Please look at the following and merge into the schema: ${data}`)
 
-    fse.outputJSON(`${outputFolder}/${outputFileName}.json`, JSON.parse(chatCompletion.choices[0].message.content), (error) => {
+    const response = await llm.createChat();
+
+    fse.outputJSON(`${outputFolder}/${outputFileName}.json`, response, (error) => {
       if (error) console.log(error);
     });
 

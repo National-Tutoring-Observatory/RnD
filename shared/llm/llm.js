@@ -13,7 +13,6 @@ class LLM {
   }
 
   createChat = async () => {
-    const { stream, format, quality, provider } = this.options;
 
     return this.methods.createChat(this);
 
