@@ -6,6 +6,7 @@ import OpenAI from "openai";
 import find from 'lodash/find.js';
 import annotationSchema from "./annotationSchema.json" with { type: "json" };
 import prompts from "./prompts.json" with {type: "json"};
+import LLM from '../../shared/llm/llm.js';
 
 export const lambdaHandler = async (event) => {
   try {
@@ -19,16 +20,12 @@ export const lambdaHandler = async (event) => {
     const inputFileSplit = inputFile.split('/');
     const outputFileName = inputFileSplit[inputFileSplit.length - 1].replace('.json', '');
 
-    const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
-
     const prompt = find(prompts, { _id: promptId });
+    const originalJSON = JSON.parse(data);
 
-    const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [
-        {
-          role: "system",
-          content: `You are an expert analyst of conversations between a teacher and student/s. You will be given a conversation where you will need to fill out the following JSON: 
+    const llm = new LLM({ provider: 'OPEN_AI' })
+
+    llm.addSystemMessage(`You are an expert analyst of conversations between a teacher and student/s. You will be given a conversation where you will need to fill out the following JSON: 
           Schema: ${JSON.stringify(annotationSchema)}
 
           - The "score" is how well you think you have identified the certain moment in the conversation. 0 being the lowest with 1 being the highest.
@@ -36,23 +33,17 @@ export const lambdaHandler = async (event) => {
           - The "_id" is the _id found in the original "conversation" JSON. This needs to be tracked.
           - Make sure you only highlight the moment described by the user in their "prompt".
           - You are not limited to one annotation.
-          - Only return the annotations array.`,
-        },
-        {
-          role: "user",
-          content: `
+          - Only return the annotations array.`);
+
+    llm.addUserMessage(`
           # teacherMove: ${prompt.teacherMove}
           # prompt: ${prompt.prompt}
           # conversation: ${data}
-          `
-        },
-      ],
-      response_format: { type: "json_object" }
-    });
+          `)
 
-    const originalJSON = JSON.parse(data);
+    const response = await llm.createChat();
 
-    const annotations = JSON.parse(chatCompletion.choices[0].message.content).annotations;
+    const annotations = response.annotations;
 
     for (const annotation of annotations) {
       const currentUtterance = find(originalJSON.transcript, { _id: annotation._id });
