@@ -46,9 +46,13 @@ If you have a JSONL file, you can place your data in the `localData/raw` folder 
 We have predefined data folders for running your data through. These are listed below:
 
 `raw` - Used for raw data before being converted into session data.
+
 `input` - Used for input data. Currently we only support text files.
+
 `analysis` - Used for when the input data has been modified into our standard JSON format and analysis is being run over the file.
+
 `output` - Used for when all the functions are run and data has finished being analysed. [We do not use this yet]
+
 
 ### Running a function
 
