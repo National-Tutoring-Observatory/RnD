@@ -9,7 +9,7 @@ class LLM {
     this.options = { ...DEFAULTS, ...options };
     this.messages = [];
     this.orchestratorMessage;
-    const { methods } = getLLM(this.options.provider);
+    const { methods } = getLLM(process.env.LLM_PROVIDER);
     this.methods = methods;
     this.retries = 0;
     this.llm = methods.init();
