@@ -1,4 +1,5 @@
 import './providers/openAI.js'
+import './providers/aiGateway.js'
 import getLLM from './helpers/getLLM.js';
 
 const DEFAULTS = { quality: 'medium', stream: false, format: 'json', retries: 3 };
