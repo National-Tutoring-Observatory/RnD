@@ -21,12 +21,11 @@ export const lambdaHandler = async (event) => {
 
     llm.setOrchestratorMessage(`
       You are an expert at reading unstructured and structured data. 
-      # Make sure the output matches the JSON schema.
-      # Return the following JSON: {"score": 0, "reasoning": ""}
+      # Make sure the output matches the JSON schema: ${JSON.stringify(schema)}
       # Where score is 0 when the output is not acceptable
       # Where score is 1 when the output is acceptable and conforms.
       # Where reasoning is your reasoning as to why you scored it the way you did.
-      Schema: ${JSON.stringify(schema)}
+      # You must return the following JSON: {"score": 0, "reasoning": ""}
     `);
 
     llm.addSystemMessage("You are an expert at reading unstructured data and putting it into a structure format. You will be given different types of data and will be expected to put it into the given JSON structure.");
