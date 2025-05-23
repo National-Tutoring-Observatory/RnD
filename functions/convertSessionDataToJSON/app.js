@@ -17,7 +17,7 @@ export const lambdaHandler = async (event) => {
     const inputFileSplit = inputFile.split('/');
     const outputFileName = inputFileSplit[inputFileSplit.length - 1].replace('.json', '').replace('.vtt', '');
 
-    const llm = new LLM({ provider: 'OPEN_AI', quality: 'high', retries: 3 })
+    const llm = new LLM({ quality: 'high', retries: 3 })
 
     llm.setOrchestratorMessage(`
       You are an expert at reading unstructured and structured data. 
