@@ -4,6 +4,9 @@ dotenv.config({ path: '.env' });
 import fse from 'fs-extra';
 import schema from "./schema.json" with { type: "json" };
 import LLM from '../../shared/llm/llm.js';
+import orchestratorPrompt from './orchestrator.prompt.json' with {type: "json"};
+import systemPrompt from './system.prompt.json' with {type: "json"};
+import userPrompt from './user.prompt.json' with {type: "json"};
 
 export const lambdaHandler = async (event) => {
   try {
@@ -19,21 +22,11 @@ export const lambdaHandler = async (event) => {
 
     const llm = new LLM({ quality: 'high', retries: 3 })
 
-    llm.setOrchestratorMessage(`
-      You are an expert at reading unstructured and structured data. 
-      # Make sure the output matches the JSON schema: ${JSON.stringify(schema)}
-      # Where score is 0 when the output is not acceptable
-      # Where score is 1 when the output is acceptable and conforms.
-      # Where reasoning is your reasoning as to why you scored it the way you did.
-      # You must return the following JSON: {"score": 0, "reasoning": ""}
-    `);
+    llm.setOrchestratorMessage(orchestratorPrompt.prompt, { schema: JSON.stringify(schema) });
 
-    llm.addSystemMessage("You are an expert at reading unstructured data and putting it into a structure format. You will be given different types of data and will be expected to put it into the given JSON structure.");
+    llm.addSystemMessage(systemPrompt.prompt);
 
-    llm.addUserMessage(`
-          Schema: ${JSON.stringify(schema)}
-    
-          Please look at the following and merge into the schema: ${data}`)
+    llm.addUserMessage(userPrompt.prompt, { schema: JSON.stringify(schema), data });
 
     const response = await llm.createChat();
 
