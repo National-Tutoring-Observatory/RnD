@@ -58,7 +58,7 @@ We have predefined data folders for running your data through. These are listed 
 
 Running a function in this repo is as simple as calling `yarn {{functionName}}`. The current available functions can be found in the `functions` folder. These are loosely based upon Serverless Functions but for the purpose of running them locally they are missing most config files to run in the cloud for now.
 
-Each function folder has an `event.local.json` which is used to pass in the functions event arguments. You should update this file with the "Source data" details.
+Each function folder has an example `event.json` which is used to pass in the functions event arguments. You should copy this file within the folder, rename it `event.local.json` and then update it with the "Source data" details.
 
 #### splitDataToSessions
 
@@ -83,8 +83,6 @@ This will start an analysis of teacher moves over your data and fill out the ann
 ```
 yarn annotateSessionDataWithTeacherMoves
 ```
-
-
 
 <!-- This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI.
 
