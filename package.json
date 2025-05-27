@@ -7,7 +7,8 @@
   "scripts": {
     "annotateSessionDataWithTeacherMoves": "node functions/annotateSessionDataWithTeacherMoves/runLocal.js",
     "convertSessionDataToJSON": "node functions/convertSessionDataToJSON/runLocal.js",
-    "splitDataToSessions": "node functions/splitDataToSessions/runLocal.js"
+    "splitDataToSessions": "node functions/splitDataToSessions/runLocal.js",
+    "pipeline": "node shared/pipeline/runLocal.js"
   },
   "dependencies": {
     "dotenv": "^16.5.0",

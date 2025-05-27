@@ -10,7 +10,7 @@ import userPrompt from "./user.prompt.json" with { type: "json" };
 import prompts from "./prompts.json" with {type: "json"};
 import LLM from '../../shared/llm/llm.js';
 
-export const lambdaHandler = async (event) => {
+export const handler = async (event) => {
   try {
     const { body } = event;
     const { inputFile, outputFolder, promptId } = body;
@@ -39,7 +39,7 @@ export const lambdaHandler = async (event) => {
 
     const response = await llm.createChat();
 
-    const annotations = response.annotations;
+    const annotations = response.annotations || [];
 
     for (const annotation of annotations) {
       const currentUtterance = find(originalJSON.transcript, { _id: annotation._id });

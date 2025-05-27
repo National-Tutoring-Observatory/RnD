@@ -3,7 +3,7 @@ import readline from 'readline';
 import path from 'path';
 import get from 'lodash/get.js';
 
-export const lambdaHandler = async (event) => {
+export const handler = async (event) => {
   try {
     const { body } = event;
     const { contentType, inputFile, outputFolder, outputFileKey, sessionLimit } = body;

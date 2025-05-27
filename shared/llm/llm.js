@@ -38,7 +38,7 @@ class LLM {
           this.retries++;
           console.warn(`Retrying ${this.retries} out of ${this.options.retries}`);
           this.addUserMessage(`This is not correct. Please try again with the following reason why this is not correct. Reasoning: ${scoreResponse.reasoning}`);
-          await this.createChat();
+          return await this.createChat();
         } else {
           throw { message: 'Too many retries' };
         }
