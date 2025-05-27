@@ -1,6 +1,17 @@
 import { OpenAI } from 'openai';
 import registerLLM from "../helpers/registerLLM.js";
 
+const AI_GATEWAY_PROVIDERS = {
+  OPEN_AI: {
+    "medium": "openai.gpt-4.1-mini",
+    "high": "openai.gpt-4.1"
+  },
+  GEMINI: {
+    "medium": "google.gemini-2.0-flash-lite",
+    "high": "google.gemini-2.5-flash-preview"
+  }
+}
+
 registerLLM('AI_GATEWAY', {
   init: () => {
     const openai = new OpenAI({
@@ -13,8 +24,10 @@ registerLLM('AI_GATEWAY', {
 
     const { quality } = options;
 
+    let model = AI_GATEWAY_PROVIDERS[process.env.AI_GATEWAY_PROVIDER || 'GEMINI'][quality];
+
     const chatCompletion = await llm.chat.completions.create({
-      model: quality === 'medium' ? "openai.gpt-4.1-mini" : "openai.gpt-4.1",
+      model,
       messages: messages,
       response_format: { type: "json_object" }
     });

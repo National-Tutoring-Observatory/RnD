@@ -23,7 +23,7 @@ class LLM {
 
       const scoreResponse = await this.methods.createChat({
         llm: this.llm,
-        options: this.options,
+        options: { ...this.options, quality: 'high' },
         messages: [this.orchestratorMessage, {
           "role": 'assistant',
           'content': `Output: ${JSON.stringify(response)}`
