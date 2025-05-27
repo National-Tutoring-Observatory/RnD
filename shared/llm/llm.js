@@ -1,6 +1,7 @@
 import './providers/openAI.js'
 import './providers/aiGateway.js'
 import getLLM from './helpers/getLLM.js';
+import each from 'lodash/each.js';
 
 const DEFAULTS = { quality: 'medium', stream: false, format: 'json', retries: 3 };
 
@@ -49,28 +50,47 @@ class LLM {
 
   };
 
-  setOrchestratorMessage = (message) => {
+  replaceMessageWithVariables = (message, variables = {}) => {
+    each(variables, (variableValue, variableKey) => {
+      message = message.replaceAll(`{{${variableKey}}}`, variableValue)
+    });
+    return message;
+  }
+
+  setOrchestratorMessage = (message, variables) => {
+
+    message = this.replaceMessageWithVariables(message, variables);
+
     this.orchestratorMessage = {
       'role': 'assistant',
       'content': message.trim()
     };
   }
 
-  addSystemMessage = (message) => {
+  addSystemMessage = (message, variables) => {
+
+    message = this.replaceMessageWithVariables(message, variables);
+
     this.messages.push({
       'role': 'system',
       'content': message.trim()
     });
   };
 
-  addAssistantMessage = (message) => {
+  addAssistantMessage = (message, variables) => {
+
+    message = this.replaceMessageWithVariables(message, variables);
+
     this.messages.push({
       'role': 'assistant',
       'content': message.trim()
     });
   };
 
-  addUserMessage = (message) => {
+  addUserMessage = (message, variables) => {
+
+    message = this.replaceMessageWithVariables(message, variables);
+
     this.messages.push({
       'role': 'user',
       'content': message.trim()

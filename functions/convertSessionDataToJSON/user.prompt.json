@@ -1,0 +1,3 @@
+{
+  "prompt": "Schema: {{schema}}\n\nPlease look at the following and merge into the schema: {{data}}"
+}
