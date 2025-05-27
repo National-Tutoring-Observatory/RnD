@@ -1,0 +1,38 @@
+{
+  "tasks": [
+    {
+      "_id": "0",
+      "name": "Split data to sessions",
+      "task": "splitDataToSessions",
+      "isActive": false,
+      "body": {
+        "contentType": "JSONL",
+        "inputFile": "localData/raw/transcripts.jsonl",
+        "outputFolder": "localData/input",
+        "outputFileKey": "id",
+        "sessionLimit": 30
+      }
+    },
+    {
+      "_id": "1",
+      "name": "Convert session data to JSON",
+      "isActive": false,
+      "task": "convertSessionDataToJSON",
+      "body": {
+        "inputFile": "localData/input/*",
+        "outputFolder": "localData/analysis"
+      }
+    },
+    {
+      "_id": "2",
+      "name": "Annotate session data with Teacher Moves",
+      "isActive": false,
+      "task": "annotateSessionDataWithTeacherMoves",
+      "body": {
+        "inputFile": "localData/analysis/*",
+        "outputFolder": "localData/analysis",
+        "promptId": "0"
+      }
+    }
+  ]
+}

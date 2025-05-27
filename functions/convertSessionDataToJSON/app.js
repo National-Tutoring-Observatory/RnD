@@ -8,7 +8,7 @@ import orchestratorPrompt from './orchestrator.prompt.json' with {type: "json"};
 import systemPrompt from './system.prompt.json' with {type: "json"};
 import userPrompt from './user.prompt.json' with {type: "json"};
 
-export const lambdaHandler = async (event) => {
+export const handler = async (event) => {
   try {
     const { body } = event;
     const { inputFile, outputFolder } = body;
@@ -29,6 +29,8 @@ export const lambdaHandler = async (event) => {
     llm.addUserMessage(userPrompt.prompt, { schema: JSON.stringify(schema), data });
 
     const response = await llm.createChat();
+
+    console.log(response);
 
     fse.outputJSON(`${outputFolder}/${outputFileName}.json`, response, (error) => {
       if (error) console.log(error);
