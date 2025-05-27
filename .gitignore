@@ -1,5 +1,6 @@
 # AWS
 .aws-sam
+event.local.json
 
 # Logs
 logs
