@@ -32,9 +32,7 @@ export const handler = async (event) => {
 
     console.log(response);
 
-    fse.outputJSON(`${outputFolder}/${outputFileName}.json`, response, (error) => {
-      if (error) console.log(error);
-    });
+    await fse.outputJSON(`${outputFolder}/${outputFileName}.json`, response);
 
     return {
       statusCode: 200,
