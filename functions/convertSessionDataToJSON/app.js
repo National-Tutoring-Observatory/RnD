@@ -30,8 +30,6 @@ export const handler = async (event) => {
 
     const response = await llm.createChat();
 
-    console.log(response);
-
     await fse.outputJSON(`${outputFolder}/${outputFileName}.json`, response);
 
     return {

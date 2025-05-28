@@ -46,9 +46,7 @@ export const handler = async (event) => {
       currentUtterance.annotations = [...currentUtterance.annotations, annotation];
     }
 
-    fse.outputJSON(`${outputFolder}/${outputFileName}.json`, originalJSON, (error) => {
-      if (error) console.log(error);
-    });
+    await fse.outputJSON(`${outputFolder}/${outputFileName}.json`, originalJSON);
 
     return {
       statusCode: 200,
