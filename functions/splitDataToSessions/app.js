@@ -1,4 +1,5 @@
 import fs from 'fs';
+import fse from 'fs-extra';
 import readline from 'readline';
 import path from 'path';
 import get from 'lodash/get.js';
@@ -11,46 +12,49 @@ export const handler = async (event) => {
     if (!await fs.existsSync(inputFile)) throw { message: 'This input file does not exist' };
 
     if (contentType === 'JSONL') {
-      const fileStream = fs.createReadStream(inputFile, { encoding: 'utf-8' });
-      const rl = readline.createInterface({
-        input: fileStream,
-        crlfDelay: Infinity // To handle all instances of CR LF ('\r\n') as a single line break.
-      });
+      return new Promise(async (resolve, reject) => {
 
-      let lineNumber = 0;
+        const fileStream = fs.createReadStream(inputFile, { encoding: 'utf-8' });
+        const rl = readline.createInterface({
+          input: fileStream,
+          crlfDelay: Infinity // To handle all instances of CR LF ('\r\n') as a single line break.
+        });
 
-      for await (const line of rl) {
-        lineNumber++;
-        if (lineNumber > sessionLimit) continue;
-        const trimmedLine = line.trim();
-        if (trimmedLine === '') continue;// Skip empty lines
+        rl.on('close', () => {
+          console.log('Finished processing the JSONL file.');
+        });
 
-        try {
-          const jsonObject = JSON.parse(trimmedLine);
-          const outputFileName = get(jsonObject, outputFileKey, `record_${lineNumber}`)
-          const outputFilePath = path.join(outputFolder, `${outputFileName}.json`);
+        rl.on('error', (err) => {
+          console.error('An error occurred while reading the file:', err);
+          reject();
+        });
 
-          fs.writeFile(outputFilePath, JSON.stringify(jsonObject), 'utf-8', (err) => {
-            if (err) {
-              console.error(`Error writing file ${outputFilePath}:`, err);
-            } else {
-              console.log(`Successfully created ${outputFilePath}`);
-            }
-          });
+        let lineNumber = 0;
 
-        } catch (parseError) {
-          console.error(`Skipping line ${lineNumber} due to JSON parsing error:`, parseError.message);
+        for await (const line of rl) {
+          lineNumber++;
+          if (lineNumber > sessionLimit) continue;
+          const trimmedLine = line.trim();
+          if (trimmedLine === '') continue;// Skip empty lines
+
+          try {
+            const jsonObject = JSON.parse(trimmedLine);
+            const outputFileName = get(jsonObject, outputFileKey, `record_${lineNumber}`)
+            const outputFilePath = path.join(outputFolder, `${outputFileName}.json`);
+
+            await fse.outputJSON(outputFilePath, JSON.stringify(jsonObject));
+
+          } catch (parseError) {
+            console.error(`Skipping line ${lineNumber} due to JSON parsing error:`, parseError.message);
+          }
         }
-      }
 
-      rl.on('close', () => {
-        console.log('Finished processing the JSONL file.');
-      });
+        resolve();
 
-      rl.on('error', (err) => {
-        console.error('An error occurred while reading the file:', err);
       });
     }
+
+    console.log('closing');
 
     return {
       statusCode: 200,
