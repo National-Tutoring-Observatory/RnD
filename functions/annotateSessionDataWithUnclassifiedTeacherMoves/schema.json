@@ -1,0 +1,25 @@
+{
+  "transcript": [
+    {
+      "role": "TEACHER",
+      "content": "// Content of teacher utterance",
+      "start_time": "// Start time of utterance - this can be estimated",
+      "end_time": "// End time of utterance - this can be estimated",
+      "annotations": []
+    },
+    {
+      "role": "STUDENT_1",
+      "content": "// Content of student utterance",
+      "start_time": "// Start time of utterance - this can be estimated",
+      "end_time": "// End time of utterance - this can be estimated",
+      "annotations": []
+    },
+    {
+      "role": "TEACHER",
+      "content": "// Content of teacher utterance",
+      "start_time": "// Start time of utterance - this can be estimated",
+      "end_time": "// End time of utterance - this can be estimated",
+      "annotations": []
+    }
+  ]
+}

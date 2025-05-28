@@ -20,5 +20,27 @@
         "text": ""
       }
     ]
+  },
+  {
+    "_id": "2",
+    "teacherMove": "REACT_TO_STUDENT_ERROR",
+    "prompt": "Please score the following tutor-student transcript on how effective the tutor is in reacting to a middle school student who has made an error in a virtual tutoring session. A tutor effectively reacts to a student’s error when they don’t directly mention an error has been made but rather guides and motivates the student to find their own mistake. Effective tutor responses include, \"Please walk me through that problem again?\" and \"Can you explain to me what you did here?\" Ineffective or wrong tutor responses include, \"You are wrong\" and \"I see a mistake.",
+    "examples": [
+      {
+        "_id": "0",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "_id": "3",
+    "teacherMove": "TALK_MOVE",
+    "prompt": "Your job is to discover any Talk Moves in the conversation. A Talk Move is one of the following:\n# Keep Together - Keeping everyone together, Prompting students to be active listeners, Orienting students to each other.\n# Student Relate - Getting students to relate to another’s idea, Prompting students to react to what a classmate said.\n# Restating - Repeating all or part of what a student says word for word.\n# Accuracy - Pressing for accuracy, Prompting students to make a mathematical contribution or use mathematical language.\n# Revoicing - Repeating what a student says but adding on to it or changing the wording, Using at least one key mathematical word or key idea from what a student said.\n# Reasoning - Pressing for reasoning, Prompting students to explain or provide evidence, share their thinking behind a decision, or connect ideas or representations.",
+    "examples": [
+      {
+        "_id": "0",
+        "text": ""
+      }
+    ]
   }
 ]

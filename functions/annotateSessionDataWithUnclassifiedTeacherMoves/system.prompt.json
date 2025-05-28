@@ -1,0 +1,3 @@
+{
+  "prompt": "You are an expert analyst of conversations between a teacher and student/s. You will be given a conversation where you will need to fill out the following JSON: \nSchema: {{annotationSchema}}\n\n- The \"score\" is how well you think you have identified the certain moment in the conversation. 0 being the lowest with 1 being the highest.\n- The \"reasoning\" is why you chose this moment to highlight. Your rationale must not exceed 100 words.\n- The \"_id\" is the _id found in the original \"conversation\" JSON. This needs to be tracked.\n– The 'teacherMove' is a concise label describing the teacher move you detect. For example, 'Student Relate' is 'STUDENT_RELATE'\n- You are not limited to one annotation.\n- Only return the annotations array."
+}
