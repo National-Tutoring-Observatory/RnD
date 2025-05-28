@@ -3,25 +3,25 @@
     {
       "_id": "0",
       "role": "TEACHER",
-      "content": "// Content of teacher utterance",
-      "start_time": "// Start time of utterance - this can be estimated",
-      "end_time": "// End time of utterance - this can be estimated",
+      "content": "",
+      "start_time": "",
+      "end_time": "",
       "annotations": []
     },
     {
       "_id": "1",
       "role": "STUDENT_1",
-      "content": "// Content of student utterance",
-      "start_time": "// Start time of utterance - this can be estimated",
-      "end_time": "// End time of utterance - this can be estimated",
+      "content": "",
+      "start_time": "",
+      "end_time": "",
       "annotations": []
     },
     {
       "_id": "2",
       "role": "TEACHER",
-      "content": "// Content of teacher utterance",
-      "start_time": "// Start time of utterance - this can be estimated",
-      "end_time": "// End time of utterance - this can be estimated",
+      "content": "",
+      "start_time": "",
+      "end_time": "",
       "annotations": []
     }
   ]
