@@ -31,7 +31,6 @@ export const handler = async (event) => {
     });
 
     llm.addUserMessage(userPrompt.prompt, {
-      teacherMove: prompt.teacherMove,
       prompt: prompt.prompt,
       conversation: data
     })
