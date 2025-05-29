@@ -111,6 +111,14 @@ class LLM {
     return this.messages;
   };
 
+  getMessagesAsString = () => {
+    let string = '';
+    for (const message of this.messages) {
+      string += message.content + '\n';
+    }
+    return string;
+  }
+
 }
 
 export default LLM;
