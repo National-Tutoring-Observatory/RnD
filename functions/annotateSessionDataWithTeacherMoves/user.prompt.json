@@ -1,3 +1,3 @@
 {
-  "prompt": "# teacherMove: {{teacherMove}}\n# prompt: {{prompt}}\n# conversation: {{data}}"
+  "prompt": "# teacherMove: {{teacherMove}}\n# prompt: {{prompt}}\n# conversation: {{conversation}}"
 }
