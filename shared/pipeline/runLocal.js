@@ -24,8 +24,7 @@ async function runner() {
           eventTasks.push(task);
         }
       }
-      const response = await pipeline(eventTasks);
-      console.log(response);
+      await pipeline(eventTasks);
     }
 
   } catch (error) {

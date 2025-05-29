@@ -54,11 +54,10 @@ export const handler = async (event) => {
       });
     }
 
-    console.log('closing');
-
     return {
       statusCode: 200,
     };
+
   } catch (err) {
     console.log(err);
     return {

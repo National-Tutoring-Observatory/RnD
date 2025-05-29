@@ -1,0 +1,13 @@
+{
+  "annotations": [
+    {
+      "_id": "0",
+      "type": "TEACHER_MOVE",
+      "teacherMove": "",
+      "reasoning": "",
+      "score": 0,
+      "identifiedBy": "AI",
+      "isUnclassified": true
+    }
+  ]
+}

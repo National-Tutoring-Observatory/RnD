@@ -1,6 +1,7 @@
 import { handler as splitDataToSessions } from '../../functions/splitDataToSessions/app.js';
 import { handler as convertSessionDataToJSON } from '../../functions/convertSessionDataToJSON/app.js';
 import { handler as annotateSessionDataWithTeacherMoves } from '../../functions/annotateSessionDataWithTeacherMoves/app.js';
+import { handler as annotateSessionDataWithUnclassifiedTeacherMoves } from '../../functions/annotateSessionDataWithUnclassifiedTeacherMoves/app.js';
 
 export default async (tasks) => {
   console.log('Running pipeline');
@@ -15,6 +16,9 @@ export default async (tasks) => {
         break;
       case 'annotateSessionDataWithTeacherMoves':
         await annotateSessionDataWithTeacherMoves(task);
+        break;
+      case 'annotateSessionDataWithUnclassifiedTeacherMoves':
+        await annotateSessionDataWithUnclassifiedTeacherMoves(task);
         break;
     }
     console.log('Finised:', task.name);
