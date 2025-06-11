@@ -1,0 +1,56 @@
+{
+  "body": {
+    "inputFolder": "localData/analysis/merged",
+    "outputFolder": "localData/output",
+    "keys": [
+      {
+        "field": "sessionId",
+        "title": "Session ID"
+      },
+      {
+        "field": "_id",
+        "title": "Utterance ID"
+      },
+      {
+        "field": "role",
+        "title": "Role"
+      },
+      {
+        "field": "content",
+        "title": "Content"
+      },
+      {
+        "field": "start_time",
+        "title": "Start time"
+      },
+      {
+        "field": "end_time",
+        "title": "End time"
+      },
+      {
+        "field": "humanTeacherMove",
+        "title": "Human Teacher Move"
+      },
+      {
+        "field": "humanReasoning",
+        "title": "Human Reasoning"
+      },
+      {
+        "field": "humanScore",
+        "title": "Human Score"
+      },
+      {
+        "field": "aiTeacherMove",
+        "title": "AI Teacher Move"
+      },
+      {
+        "field": "aiReasoning",
+        "title": "AI Reasoning"
+      },
+      {
+        "field": "aiScore",
+        "title": "AI Score"
+      }
+    ]
+  }
+}
