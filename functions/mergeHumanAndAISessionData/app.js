@@ -1,8 +1,6 @@
 import fs from 'fs';
 import fse from 'fs-extra';
-import readline from 'readline';
 import path from 'path';
-import get from 'lodash/get.js';
 
 export const handler = async (event) => {
   try {
@@ -13,7 +11,7 @@ export const handler = async (event) => {
 
     await fse.ensureDir(outputFolder);
 
-    jsonsInDir.forEach(async file => {
+    for (const file of jsonsInDir) {
       const jsonAnnotatedByAI = await fse.readJSON(`${inputFolderAI}/${file}`);
       let jsonAnnotatedByHuman;
       try {
@@ -35,7 +33,7 @@ export const handler = async (event) => {
         }
       }
       await fse.writeJSON(`${outputFolder}/${file}`, jsonAnnotatedByAI);
-    });
+    };
 
     return {
       statusCode: 200,
