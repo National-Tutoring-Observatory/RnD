@@ -1,0 +1,7 @@
+{
+  "body": {
+    "inputFolderHuman": "localData/analysis/human",
+    "inputFolderAI": "localData/analysis/ai",
+    "outputFolder": "localData/analysis/merged"
+  }
+}

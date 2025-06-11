@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "mergeHumanAndAISessionData": "node functions/mergeHumanAndAISessionData/runLocal.js",
     "annotateSessionDataWithUnclassifiedTeacherMoves": "node functions/annotateSessionDataWithUnclassifiedTeacherMoves/runLocal.js",
     "annotateSessionDataWithTeacherMoves": "node functions/annotateSessionDataWithTeacherMoves/runLocal.js",
     "convertSessionDataToJSON": "node functions/convertSessionDataToJSON/runLocal.js",
