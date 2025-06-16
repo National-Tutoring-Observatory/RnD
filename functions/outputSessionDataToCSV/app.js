@@ -23,11 +23,9 @@ export const handler = async (event) => {
           if (annotation.identifiedBy === "HUMAN") {
             annotationFields.humanTeacherMove = annotation.teacherMove;
             annotationFields.humanReasoning = annotation.reasoning;
-            annotationFields.humanScore = annotation.score;
           } else {
             annotationFields.aiTeacherMove = annotation.teacherMove;
             annotationFields.aiReasoning = annotation.reasoning;
-            annotationFields.aiScore = annotation.score;
             annotationFields.aiStrategy = annotation.strategy;
             annotationFields.aiIntention = annotation.intention;
           }

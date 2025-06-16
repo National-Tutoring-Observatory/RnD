@@ -28,7 +28,7 @@ export const handler = async (event) => {
       annotationSchema: JSON.stringify(prompt.annotationSchema)
     });
 
-    llm.addUserMessage(prompt.prompt, {
+    llm.addUserMessage(`${prompt.prompt}\n\nConversation: {{conversation}}`, {
       conversation: data
     })
 
