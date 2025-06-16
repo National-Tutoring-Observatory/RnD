@@ -28,6 +28,8 @@ export const handler = async (event) => {
             annotationFields.aiTeacherMove = annotation.teacherMove;
             annotationFields.aiReasoning = annotation.reasoning;
             annotationFields.aiScore = annotation.score;
+            annotationFields.aiStrategy = annotation.strategy;
+            annotationFields.aiIntention = annotation.intention;
           }
         }
         return {
