@@ -3,9 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 import fse from 'fs-extra';
 import find from 'lodash/find.js';
-import annotationSchema from "./annotationSchema.json" with { type: "json" };
 import systemPrompt from "./system.prompt.json" with { type: "json" };
-import userPrompt from "./user.prompt.json" with { type: "json" };
 import prompts from "./prompts.json" with {type: "json"};
 import LLM from '../../shared/llm/llm.js';
 
@@ -27,12 +25,10 @@ export const handler = async (event) => {
     const llm = new LLM({ quality: 'high' });
 
     llm.addSystemMessage(systemPrompt.prompt, {
-      annotationSchema: JSON.stringify(annotationSchema)
+      annotationSchema: JSON.stringify(prompt.annotationSchema)
     });
 
-    llm.addUserMessage(userPrompt.prompt, {
-      teacherMove: prompt.teacherMove,
-      prompt: prompt.prompt,
+    llm.addUserMessage(prompt.prompt, {
       conversation: data
     })
 
