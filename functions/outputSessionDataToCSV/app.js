@@ -19,7 +19,7 @@ export const handler = async (event) => {
       const json = await fse.readJSON(`${inputFolder}/${file}`);
       const transcript = map(json.transcript, (utterance) => {
         const annotationFields = {};
-        for (const annotation of utterance.annotations) {
+        for (const annotation of utterance.annotations || []) {
           if (annotation.identifiedBy === "HUMAN") {
             annotationFields.humanTeacherMove = annotation.teacherMove;
             annotationFields.humanReasoning = annotation.reasoning;

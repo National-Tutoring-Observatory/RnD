@@ -156,5 +156,49 @@
         "text": ""
       }
     ]
+  },
+  {
+    "_id": "7",
+    "teacherMove": "DICTIONARY",
+    "prompt": "You are an expert elementary–school math tutor.  \nYour task: is to identify every Tutor Move made.\n\n## Workflow  \n1. **Read** the dialogue.  \n2. **Map** each Tutor Move to an utterance from the *Allowed Moves* list below.  \n3. **Omit** any turns that are off-topic, administrative, or not directly about solving the math problem.\n\n## Allowed Moves\n• GIVING_PRAISE\n• GIVING_HINT\n• PROVIDING_EXPLANATION\n• EXEMPLIFYING\n• REVOICING\n• ERROR_CORRECTION\n• PROBING_STUDENT_THINKING\n• PROMPTING\n• USING_VISUAL_CUES\n• EMOTIONAL_SUPPORT\n• SCAFFOLDING\n\n## Clarifications (follow these exactly):\n- Return **only** IDs from the Allowed Moves list—no synonyms or casing changes.  \n- **Omit** any tutor turn that is off-topic, administrative, or not about solving the math problem.   \n- All other moves should be assigned by their plain-English status in the Allowed Moves list.\n\n## Move explanations\nGIVING_PRAISE: Teacher affirms student effort, progress, or correctness.\nGIVING_HINT: Teacher provides a clue or suggestion to nudge the student toward a solution.\nPROVIDING_EXPLANATION: Teacher delivers a clear explanation or factual information relevant to the problem.\nEXEMPLIFYING: Teacher uses examples to illustrate a concept.\nREVOICING: Teacher restates or paraphrases the student's response to clarify or emphasize meaning.\nERROR_CORRECTION: Teacher points out an error and provides an explanation for it to reinforce correct understanding.\nPROBING_STUDENT_THINKING: The teacher asks a follow-up question that seeks to uncover or explore the student's reasoning, logic, or understanding behind a statement or answer they've already given. This move invites the student to reflect, explain, or clarify their thought process.\nPROMPTING: The teacher encourages the student to participate, think, or respond—often after the student expresses confusion, hesitates, or hasn't yet offered an idea. The goal is to initiate engagement without requiring a deep explanation.\nUSING_VISUAL_CUES: Teacher refers to or encourages attention to a visual representation to support understanding.\nEMOTIONAL_SUPPORT: Teacher offers reassurance, empathy, or encouragement to build student confidence.\nSCAFFOLDING: Teacher breaks down the task and supports the student step-by-step.\n\n\n## Few-Shot Examples\n1. GIVING_PRAISE: \"Good job! That's right, and you figured it out almost all on your own\"\n2. GIVING_HINT: \"so half of 71 bucks should be BIG!\"\n3. PROVIDING_EXPLANATION: \"But you also have the 16 side. If this was a square or rectangle, you would just think that both sides are equal, but it isn't, at least not yet!\"\n4. EXEMPLIFYING: \"for example, if it said: \"The item is 45% off.\" , the answer would be different than if it say \"The item is 45% of its original price.\"\n5. REVOICING: \"oh right so what I meant is, when you say subtract 180 from 146, it means that you are doing 146-180. So what should actually be said is \"subtract 146 from 180\" because that means you are taking 146 away from 180 so it would be 180-146\"\n6. ERROR_CORRECTION: \"It should be 34. It cannot be 16 because 16+57+89 is not 180\"\n7. PROBING_STUDENT_THINKING: \"So do you see why 2 is actually an allowed value for x now?\"\n8. PROMPTING: \"Have you heard of the Pythagorean theorem?\"\n9. USING_VISUAL_CUES: \"The red circle shows the right angle\"\n10. EMOTIONAL_SUPPORT: \"don't worry take it slow\"\n11. SCAFFOLDING: \"Let's break out the problem bit by bit.\"\n\n## Output your choices into the JSON structure where:\nteacherMove = The Tutor Move from the list above.\nreasoning = The reason why you've chosen this Tutor Move.",
+    "annotationSchema": {
+      "annotations": [
+        {
+          "_id": "0",
+          "type": "TEACHER_MOVE",
+          "identifiedBy": "AI",
+          "reasoning": "",
+          "teacherMove": ""
+        }
+      ]
+    },
+    "examples": [
+      {
+        "_id": "0",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "_id": "8",
+    "teacherMove": "DICTIONARY",
+    "prompt": "You are an expert elementary–school math tutor.  \nYour task: is to identify every Tutor Move made.\n\n## Workflow  \n1. **Read** the dialogue.  \n2. **Map** each Tutor Move to an utterance from the *Allowed Moves* list below.  \n3. **Omit** any turns that are off-topic, administrative, or not directly about solving the math problem.\n\n## Allowed Moves\n**1. GIVING_PRAISE**\nExplanation: Teacher affirms student effort, progress, or correctness.\nExample: \"Good job! That's right, and you figured it out almost all on your own\"\n\n**2. GIVING_HINT**\nExplanation: Teacher provides a clue or suggestion to nudge the student toward a solution.\nExample: \"so half of 71 bucks should be BIG!\"\n\n**3. PROVIDING_EXPLANATION**\nExplanation: Teacher delivers a clear explanation or factual information relevant to the problem.\nExample: \"But you also have the 16 side. If this was a square or rectangle, you would just think that both sides are equal, but it isn't, at least not yet!\"\n\n**4. EXEMPLIFYING**\nExplanation: Teacher uses examples to illustrate a concept.\nExample: \"for example, if it said: \"The item is 45% off.\" , the answer would be different than if it say \"The item is 45% of its original price.\"\n\n**5. REVOICING**\nExplanation: Teacher restates or paraphrases the student's response to clarify or emphasize meaning.\nExample: \"oh right so what I meant is, when you say subtract 180 from 146, it means that you are doing 146-180. So what should actually be said is 'subtract 146 from 180' because that means you are taking 146 away from 180 so it would be 180-146\"\n\n**6. ERROR_CORRECTION**\nExplanation: Teacher points out an error and provides an explanation for it to reinforce correct understanding.\nExample: \"It should be 34. It cannot be 16 because 16+57+89 is not 180\"\n\n**7. PROBING_STUDENT_THINKING**\nExplanation: The teacher asks a follow-up question that seeks to uncover or explore the student's reasoning, logic, or understanding behind a statement or answer they've already given. This move invites the student to reflect, explain, or clarify their thought process.\nExample: \"So do you see why 2 is actually an allowed value for x now?\"\n\n**8. PROMPTING**\nExplanation: The teacher encourages the student to participate, think, or respond—often after the student expresses confusion, hesitates, or hasn't yet offered an idea. The goal is to initiate engagement without requiring a deep explanation.\nExample: \"Have you heard of the Pythagorean theorem?\"\n\n**9. USING_VISUAL_CUES**\nExplanation: Teacher refers to or encourages attention to a visual representation to support understanding.\nExample: \"The red circle shows the right angle\"\n\n**10. EMOTIONAL_SUPPORT**\nExplanation: Teacher offers reassurance, empathy, or encouragement to build student confidence.\nExample: \"don't worry take it slow\"\n\n**11. SCAFFOLDING**\nExplanation: Teacher breaks down the task and supports the student step-by-step.\nExample: \"Let's break out the problem bit by bit.\"\n\n## Clarifications (follow these exactly):\n- Return **only** IDs from the Allowed Moves list—no synonyms or casing changes.  \n- **Omit** any tutor turn that is off-topic, administrative, or not about solving the math problem.   \n- All other moves should be assigned by their plain-English status in the Allowed Moves list.\n\nOutput your choices into the JSON structure where:\nteacherMove = The Tutor Move from the list above.\nreasoning = The reason why you've chosen this Tutor Move.",
+    "annotationSchema": {
+      "annotations": [
+        {
+          "_id": "0",
+          "type": "TEACHER_MOVE",
+          "identifiedBy": "AI",
+          "reasoning": "",
+          "teacherMove": ""
+        }
+      ]
+    },
+    "examples": [
+      {
+        "_id": "0",
+        "text": ""
+      }
+    ]
   }
 ]
