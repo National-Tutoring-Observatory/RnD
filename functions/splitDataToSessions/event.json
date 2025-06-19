@@ -4,6 +4,7 @@
     "inputFile": "localData/raw/transcripts.jsonl",
     "outputFolder": "localData/input",
     "outputFileKey": "id",
-    "sessionLimit": 30
+    "sessionLimit": 30,
+    "sessionSkip": 30
   }
 }

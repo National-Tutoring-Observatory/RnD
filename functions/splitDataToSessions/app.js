@@ -7,7 +7,7 @@ import get from 'lodash/get.js';
 export const handler = async (event) => {
   try {
     const { body } = event;
-    const { contentType, inputFile, outputFolder, outputFileKey, sessionLimit } = body;
+    const { contentType, inputFile, outputFolder, outputFileKey, sessionLimit, sessionSkip } = body;
 
     if (!await fs.existsSync(inputFile)) throw { message: 'This input file does not exist' };
 
@@ -33,7 +33,7 @@ export const handler = async (event) => {
 
         for await (const line of rl) {
           lineNumber++;
-          if (lineNumber > sessionLimit) continue;
+          if (lineNumber > sessionSkip && lineNumber > sessionLimit) continue;
           const trimmedLine = line.trim();
           if (trimmedLine === '') continue;// Skip empty lines
 
