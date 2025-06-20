@@ -32,6 +32,7 @@ Open the .env file in the root of the repo and include the following environment
 OPEN_AI_KEY='Your Open AI API key'
 AI_GATEWAY_KEY='Cornell AI Gateway API key'
 AI_GATEWAY_BASE_URL='Cornell AI Gateway base url'
+AI_GATEWAY_PROVIDER='Cornell AI Gateway LLM provider' // GEMINI or OPEN_AI
 LLM_PROVIDER='Your chosen LLM provider' // 'OPEN_AI', 'AI_GATEWAY'
 ```
 
@@ -49,7 +50,9 @@ We have predefined data folders for running your data through. These are listed 
 
 `input` - Used for input data. Currently we only support text files.
 
-`analysis` - Used for when the input data has been modified into our standard JSON format and analysis is being run over the file.
+`preAnalysis` - Used for when the input data has been modified into our standard JSON format and analysis is ready to be run over the file.
+
+`analysis` - Used for when you are running analysis over your files.
 
 `output` - Used for when all the functions are run and data has finished being analysed. [We do not use this yet]
 
@@ -76,50 +79,50 @@ This will take any text file and attempt to convert it into our JSON structure r
 yarn convertSessionDataToJSON
 ```
 
-#### annotateSessionDataWithTeacherMoves
+#### annotatePerUtterance
 
-This will start an analysis of teacher moves over your data and fill out the annotations array with where we think a teacher move has occured.
-
-```
-yarn annotateSessionDataWithTeacherMoves
-```
-
-<!-- This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI.
-
-## Setup
-
-### Prerequisites
-
-- Install Node.js 22.x
-
-- Install Python 3.12
-
-### Setup AWS SAM CLI
+This will start an analysis of over your session data and fill out the annotations array per utterance.
 
 ```
-brew tap aws/tap
-``` 
-
-```
-brew install aws-sam-cli
+yarn annotatePerUtterance
 ```
 
-Then test SAM CLI is installed
+#### annotatePerSession
+
+This will start an analysis of over your session data and fill out the annotations schema for the whole session. Use this to aggregate an annotation to the top level
 
 ```
-sam --version
+yarn annotatePerSession
 ```
 
-## Build
+#### mergeHumanAndAISessionData
 
-To build all functions make sure Docker Desktop is open and run:
+This will merge two sets of data from a human annotated session to an AI annotated session into one file. This runs across a whole folder rather than individual files.
+
 ```
-sam build --use-container
+yarn mergeHumanAndAISessionData
 ```
 
-## Run
+#### outputSessionDataToCSV
 
-To run the individual functions use the following template:
+This will output a set of JSON files to CSV.
+
 ```
-sam local invoke {{FunctionName}} --event functions/{{functionDirectory}}/event.json
-``` -->
+yarn outputSessionDataToCSV
+```
+
+### Running the pipeline
+
+The pipeline is a way of running multiple functions in a single run. The pipeline can also use the `*` as a file input to select anything in that folder to help run functions across multiple files. Running the pipeline in this repo is as simple as calling `yarn pipeline`. The current available tasks can be found in the `functions` folder. 
+
+The pipeline has an example `event.json` which is used to pass in the tasks and their function and event arguments. You should copy this file within the folder `shared/pipeline`, rename it `event.local.json` and then update it with the details found in the `event.json` files inside each function folder.
+
+```
+yarn pipeline
+```
+
+### Providers
+
+Our LLM setup is flexible and you can add your own LLM providers easily. If you are using the Cornell AI Gateway then you need to adjust the `shared/llm/providers/aiGateway.js` and add your own `AI_GATEWAY_PROVIDERS` settings. Then in your .env, change the `AI_GATEWAY_PROVIDER` variable to be your new provider.
+
+If you want to add another LLM that is not available, create a new provider file in the `shared/llm/providers` folder. We suggest copying the `openAI.js` file as an example.
