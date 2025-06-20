@@ -1,7 +1,9 @@
 import { handler as splitDataToSessions } from '../../functions/splitDataToSessions/app.js';
 import { handler as convertSessionDataToJSON } from '../../functions/convertSessionDataToJSON/app.js';
-import { handler as annotateSessionDataWithTeacherMoves } from '../../functions/annotateSessionDataWithTeacherMoves/app.js';
-import { handler as annotateSessionDataWithUnclassifiedTeacherMoves } from '../../functions/annotateSessionDataWithUnclassifiedTeacherMoves/app.js';
+import { handler as annotatePerUtterance } from '../../functions/annotatePerUtterance/app.js';
+import { handler as annotatePerSession } from '../../functions/annotatePerSession/app.js';
+import { handler as mergeHumanAndAISessionData } from '../../functions/mergeHumanAndAISessionData/app.js';
+import { handler as outputSessionDataToCSV } from '../../functions/outputSessionDataToCSV/app.js';
 
 export default async (tasks) => {
   console.log('Running pipeline');
@@ -14,11 +16,17 @@ export default async (tasks) => {
       case 'convertSessionDataToJSON':
         await convertSessionDataToJSON(task);
         break;
-      case 'annotateSessionDataWithTeacherMoves':
-        await annotateSessionDataWithTeacherMoves(task);
+      case 'annotatePerUtterance':
+        await annotatePerUtterance(task);
         break;
-      case 'annotateSessionDataWithUnclassifiedTeacherMoves':
-        await annotateSessionDataWithUnclassifiedTeacherMoves(task);
+      case 'annotatePerSession':
+        await annotatePerSession(task);
+        break;
+      case 'mergeHumanAndAISessionData':
+        await mergeHumanAndAISessionData(task);
+        break;
+      case 'outputSessionDataToCSV':
+        await outputSessionDataToCSV(task);
         break;
     }
     console.log('Finised:', task.name);

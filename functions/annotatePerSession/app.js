@@ -34,12 +34,9 @@ export const handler = async (event) => {
 
     const response = await llm.createChat();
 
-    const annotations = response.annotations || [];
+    console.log(response);
 
-    for (const annotation of annotations) {
-      const currentUtterance = find(originalJSON.transcript, { _id: annotation._id });
-      currentUtterance.annotations = [...currentUtterance.annotations, annotation];
-    }
+    originalJSON.annotation = response || {};
 
     await fse.outputJSON(`${outputFolder}/${outputFileName}.json`, originalJSON);
 

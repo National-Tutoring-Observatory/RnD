@@ -1,6 +1,6 @@
 {
   "body": {
-    "inputFile": "localData/analysis/884473571_captions.json",
+    "inputFile": "localData/preAnalysis/884473571_captions.json",
     "outputFolder": "localData/analysis",
     "promptId": "0"
   }

@@ -7,8 +7,8 @@
   "scripts": {
     "outputSessionDataToCSV": "node functions/outputSessionDataToCSV/runLocal.js",
     "mergeHumanAndAISessionData": "node functions/mergeHumanAndAISessionData/runLocal.js",
-    "annotateSessionDataWithUnclassifiedTeacherMoves": "node functions/annotateSessionDataWithUnclassifiedTeacherMoves/runLocal.js",
-    "annotateSessionDataWithTeacherMoves": "node functions/annotateSessionDataWithTeacherMoves/runLocal.js",
+    "annotatePerSession": "node functions/annotatePerSession/runLocal.js",
+    "annotatePerUtterance": "node functions/annotatePerUtterance/runLocal.js",
     "convertSessionDataToJSON": "node functions/convertSessionDataToJSON/runLocal.js",
     "splitDataToSessions": "node functions/splitDataToSessions/runLocal.js",
     "pipeline": "node shared/pipeline/runLocal.js"
