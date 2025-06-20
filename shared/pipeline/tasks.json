@@ -10,7 +10,8 @@
         "inputFile": "localData/raw/transcripts.jsonl",
         "outputFolder": "localData/input",
         "outputFileKey": "id",
-        "sessionLimit": 30
+        "sessionLimit": 30,
+        "sessionSkip": 30
       }
     },
     {
@@ -20,18 +21,108 @@
       "task": "convertSessionDataToJSON",
       "body": {
         "inputFile": "localData/input/*",
-        "outputFolder": "localData/analysis"
+        "outputFolder": "localData/preAnalysis"
       }
     },
     {
       "_id": "2",
-      "name": "Annotate session data with Teacher Moves",
+      "name": "Annotate per utterance",
       "isActive": false,
-      "task": "annotateSessionDataWithTeacherMoves",
+      "task": "annotatePerUtterance",
       "body": {
-        "inputFile": "localData/analysis/*",
+        "inputFile": "localData/preAnalysis/*",
+        "outputFolder": "localData/analysis",
+        "promptId": "7"
+      }
+    },
+    {
+      "_id": "3",
+      "name": "Annotate per session",
+      "isActive": true,
+      "task": "annotatePerSession",
+      "body": {
+        "inputFile": "localData/preAnalysis/*",
         "outputFolder": "localData/analysis",
         "promptId": "0"
+      }
+    },
+    {
+      "_id": "4",
+      "name": "Merge human and AI session data",
+      "isActive": false,
+      "task": "mergeHumanAndAISessionData",
+      "body": {
+        "inputFolderHuman": "localData/analysis/human",
+        "inputFolderAI": "localData/analysis/ai",
+        "outputFolder": "localData/analysis/merged"
+      }
+    },
+    {
+      "_id": "5",
+      "name": "Output session data to CSV",
+      "isActive": false,
+      "task": "outputSessionDataToCSV",
+      "body": {
+        "inputFolder": "localData/analysis/merged",
+        "outputFolder": "localData/output",
+        "keys": [
+          {
+            "field": "sessionId",
+            "title": "Session ID"
+          },
+          {
+            "field": "_id",
+            "title": "Utterance ID"
+          },
+          {
+            "field": "role",
+            "title": "Role"
+          },
+          {
+            "field": "content",
+            "title": "Content"
+          },
+          {
+            "field": "start_time",
+            "title": "Start time"
+          },
+          {
+            "field": "end_time",
+            "title": "End time"
+          },
+          {
+            "field": "humanTeacherMove",
+            "title": "Human Teacher Move"
+          },
+          {
+            "field": "humanReasoning",
+            "title": "Human Reasoning"
+          },
+          {
+            "field": "humanScore",
+            "title": "Human Score"
+          },
+          {
+            "field": "aiTeacherMove",
+            "title": "AI Teacher Move"
+          },
+          {
+            "field": "aiReasoning",
+            "title": "AI Reasoning"
+          },
+          {
+            "field": "aiScore",
+            "title": "AI Score"
+          },
+          {
+            "field": "aiStrategy",
+            "title": "AI Strategy"
+          },
+          {
+            "field": "aiIntention",
+            "title": "AI intention"
+          }
+        ]
       }
     }
   ]

@@ -1,0 +1,11 @@
+[
+  {
+    "_id": "0",
+    "prompt": "You are a tutor evaluator evaluating how effectively a tutor responds to a student who has made a math error during a tutoring session. Please score the following tutor-student transcript on how effective the tutor is in reacting to a student who has made an error on a math problem. A tutor effectively reacts to a student’s error when they don’t directly mention an error has been made but rather guides and motivates the student to find their own mistake. Effective tutor responses are scored with a 1 and include, “Almost… please look carefully at what you wrote”, “Simplify further”,and ”So with all this done, can you tell me the limit?”. Ineffective or wrong tutor responses involve the the tutor giving the student the answer or explicitly pointing out the error. Ineffective responses are scored with a 0 and include “You are wrong”, “The limit is ¼ and the graph confirms that”, and “What you wrote is [d(ln y)/dx] [ln y]. What we want is [d(ln y/dx] [y].” If the tutor effectively reacted to a student math error, return a score of 1; else, return a score of 0. Always provide a reasoning as to why you chose to score it this way.",
+    "annotationSchema": {
+      "score": 0,
+      "reasoning": "",
+      "identifiedBy": "AI"
+    }
+  }
+]
