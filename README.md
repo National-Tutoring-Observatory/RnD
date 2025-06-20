@@ -115,7 +115,9 @@ yarn outputSessionDataToCSV
 
 The pipeline is a way of running multiple functions in a single run. The pipeline can also use the `*` as a file input to select anything in that folder to help run functions across multiple files. Running the pipeline in this repo is as simple as calling `yarn pipeline`. The current available tasks can be found in the `functions` folder. 
 
-The pipeline has an example `event.json` which is used to pass in the tasks and their function and event arguments. You should copy this file within the folder `shared/pipeline`, rename it `event.local.json` and then update it with the details found in the `event.json` files inside each function folder.
+The pipeline has an example `tasks.json` which is used to pass in the tasks and their function and event arguments. You should copy this file within the folder `shared/pipeline`, rename it `tasks.local.json` and then update it with the details found in the `event.json` files inside each function folder. 
+
+When filling out the `inputFile` value with an `*` will go over every file found in that folder. This is useful if you want to run the pipeline over multiple files. For example, `"inputFile": "localData/preAnalysis/*"` will go over all the files in the `localData/preAnalysis folder` and run the function over each file it finds.
 
 ```
 yarn pipeline
