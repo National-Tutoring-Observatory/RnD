@@ -29,6 +29,6 @@ export default async (tasks) => {
         await outputSessionDataToCSV(task);
         break;
     }
-    console.log('Finised:', task.name);
+    console.log('Finished:', task.name);
   }
 }
